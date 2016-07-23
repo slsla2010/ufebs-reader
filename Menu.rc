@@ -1,0 +1,268 @@
+#include "Main.h"
+A ICON MOVEABLE PURE LOADONCALL DISCARDABLE "bmp\\ur.ico"
+AppIcon ICON "bmp\\ur.ico"
+
+FULLMENU MENU
+{
+ POPUP "Обработка"
+ {
+  MENUITEM "&Загрузить ЭПД\tCtrl-O", 		CM_FILE_OPEN
+  MENUITEM "&Отрезать подпись\tCtrl-T" ,	CM_FILE_TRUNC
+  MENUITEM "&Выделить sen:Object\tAlt-E", 	CM_FILE_EXTRACT
+  MENUITEM "Выделить S&WIFTDocument(ED503)",	CM_FILE_SWIFT
+  MENUITEM "&Декодировать из BASE64\tCtrl-D", 	CM_FILE_DECODE
+  MENUITEM "&Выделить блок Proprietory(ED501)", CM_FILE_PROP
+  MENUITEM "&Форматировать XML", 		CM_FILE_PRETTY
+  MENUITEM "&Сохранить как\tCtrl-S", 		CM_FILE_SAVE
+  MENUITEM SEPARATOR
+  MENUITEM "Просмотр XML\tCtrl-F", 		CM_FILE_VISUAL
+  MENUITEM SEPARATOR
+  MENUITEM "В&ыход\t\tAlt-F4", 			CM_FILE_EXIT
+ }
+ POPUP "Редактирование"
+ {
+  MENUITEM "Кoнтекстная &замена\tF7" ,  	CM_FILE_FIND
+  MENUITEM "&Продолжить поиск\tShift-F7", 	CM_FIND_NEXT
+  MENUITEM "&Cтрочная замена\tAlt-F7", 		CM_FILE_SED_DIA
+  MENUITEM "&XPath поиск",	 		CM_XPATH_LOOK
+  MENUITEM "Проставить новую дату" , 		CM_CHANGE_DATE 
+  MENUITEM "Замена EDNo" ,  			CM_CHANGE_EDNO 
+  MENUITEM "Замена AccDocNo" ,  		CM_CHANGE_ACCDOCNO 
+  MENUITEM "Изменить сумму" ,	  		CM_CHANGE_SUM
+  MENUITEM "Пересчитать EDQuantity\tCtrl-R",	CM_CHANGE_RECALCULATE
+  MENUITEM "&Закодировать в BASE64\tCtrl-E", 	CM_FILE_ENCODE
+  MENUITEM "&Упаковать в конверт", 		CM_FILE_HEAD
+  MENUITEM "&Анализ КЗ\t\tAlt-A",	 	CM_CHANGE_ANALIZE
+  MENUITEM "&Выборка ED101", 			CM_CUT_ED101
+  MENUITEM "&Сохранить как\tCtrl-S", 		CM_FILE_CHANGE
+ }
+ POPUP "&Настройки"
+ {
+//  MENUITEM "&IDKFA\tAlt-I", 		CM_IDKFA
+  MENUITEM "ПРИ ОТКРЫТИИ:", -100 , INACTIVE,MENUBARBREAK
+  MENUITEM SEPARATOR
+  MENUITEM "проверка ED501", 	SET_CHECK_ED501
+  MENUITEM "логирование", 	SET_LOGGING
+  MENUITEM "полное меню", 	SET_FULLMENU
+  MENUITEM "ПРИ ЗАПИСИ:", -100 , INACTIVE,MENUBARBREAK
+  MENUITEM SEPARATOR
+  MENUITEM "Сжать пробелы", 	SET_COMPRESS_SPACES
+  MENUITEM "Заменить    EDNo", 	SET_CHANGE_EDNO
+  MENUITEM "Заменить    AccDocNo", 	SET_CHANGE_ACCDOCNO
+  MENUITEM "Изменить сумму", 	SET_CHANGE_SUM
+  MENUITEM "Пересчитать EDQuantity", SET_CHANGE_RECALCULATE
+  MENUITEM "Предформат XML",    SET_CHANGE_FORMAT_XML
+  MENUITEM "Сохранить с правильным именем", SET_SAVE_PROPER_NAME
+  MENUITEM "Удалять ED101 при выборке:", -100 , INACTIVE,MENUBARBREAK
+  MENUITEM SEPARATOR
+ }
+ POPUP "&Помощь"
+ {
+  MENUITEM "&О программе\tF1", 		CM_ABOUT
+#ifdef TEST_ON
+  MENUITEM "&TEST", CM_TEST
+#endif
+ }
+}
+
+
+
+
+MAINMENU MENU 
+{
+ POPUP "Обработка"
+ {
+#ifdef FULL_MENU
+  MENUITEM "&Загрузить ЭПД\tCtrl-O", 		CM_FILE_OPEN
+  MENUITEM "&Отрезать подпись\tCtrl-T" ,	CM_FILE_TRUNC
+  MENUITEM "&Выделить sen:Object\tAlt-E", 	CM_FILE_EXTRACT
+  MENUITEM "Выделить S&WIFTDocument(ED503)",	CM_FILE_SWIFT
+  MENUITEM "&Декодировать из BASE64\tCtrl-D", 	CM_FILE_DECODE
+  MENUITEM "&Выделить блок Proprietory(ED501)", CM_FILE_PROP
+  MENUITEM "&Форматировать XML", 		CM_FILE_PRETTY
+  MENUITEM "&Сохранить как\tCtrl-S", 		CM_FILE_SAVE
+  MENUITEM SEPARATOR
+  MENUITEM "Просмотр XML\tCtrl-F", 		CM_FILE_VISUAL
+  MENUITEM SEPARATOR
+#endif
+  MENUITEM "В&ыход    \tAlt-F4", 			CM_FILE_EXIT
+ }
+ POPUP "Редактирование"
+ {
+#ifdef FULL_MENU
+  MENUITEM "Кoнтекстная &замена\tF7" ,  	CM_FILE_FIND
+  MENUITEM "&Продолжить поиск\tShift-F7", 	CM_FIND_NEXT
+  MENUITEM "&Cтрочная замена\tAlt-F7", 		CM_FILE_SED_DIA
+#endif
+  MENUITEM "&XPath поиск",	 		CM_XPATH_LOOK
+#ifdef FULL_MENU
+  MENUITEM "Проставить новую дату" , 		CM_CHANGE_DATE 
+  MENUITEM "Замена EDNo" ,  			CM_CHANGE_EDNO 
+  MENUITEM "Замена AccDocNo" ,  		CM_CHANGE_ACCDOCNO 
+  MENUITEM "Изменить сумму" ,	  		CM_CHANGE_SUM
+#endif
+  MENUITEM "Пересчитать EDQuantity\tCtrl-R",	CM_CHANGE_RECALCULATE
+#ifdef FULL_MENU
+  MENUITEM "&Закодировать в BASE64\tCtrl-E", 	CM_FILE_ENCODE
+  MENUITEM "&Упаковать в конверт", 		CM_FILE_HEAD
+  MENUITEM "&Анализ КЗ\t\tAlt-A",	 	CM_CHANGE_ANALIZE
+  MENUITEM "&Выборка ED101", 			CM_CUT_ED101
+#endif
+  MENUITEM "&Сохранить как\tCtrl-S", 		CM_FILE_CHANGE
+ }
+
+ POPUP "&Настройки"
+ {
+#ifdef FULL_MENU
+//  MENUITEM "&IDKFA\tAlt-I", 		CM_IDKFA
+  MENUITEM "ПРИ ОТКРЫТИИ:", -100 , INACTIVE,MENUBARBREAK
+  MENUITEM SEPARATOR
+  MENUITEM "проверка ED501", 	SET_CHECK_ED501
+  MENUITEM "логирование", 	SET_LOGGING
+  MENUITEM "полное меню", 	SET_FULLMENU
+  MENUITEM "ПРИ ЗАПИСИ:", -100 , INACTIVE,MENUBARBREAK
+  MENUITEM SEPARATOR
+  MENUITEM "Сжать пробелы", 	SET_COMPRESS_SPACES
+  MENUITEM "Заменить    EDNo", 	SET_CHANGE_EDNO
+  MENUITEM "Заменить    AccDocNo", 	SET_CHANGE_ACCDOCNO
+  MENUITEM "Изменить сумму", 	SET_CHANGE_SUM
+  MENUITEM "Предформат XML",    SET_CHANGE_FORMAT_XML
+  MENUITEM "Пересчитать EDQuantity", SET_CHANGE_RECALCULATE
+  MENUITEM "Сохранить с правильным именем", SET_SAVE_PROPER_NAME
+#endif
+  MENUITEM "Удалять ED101 при выборке:", -100 , INACTIVE,MENUBARBREAK
+  MENUITEM SEPARATOR
+ }
+
+ POPUP "&Помощь"
+ {
+  MENUITEM "&О программе\tF1", 		CM_ABOUT
+#ifdef TEST_ON
+  MENUITEM "&TEST", CM_TEST
+#endif
+ }
+}
+
+#define VK_F5 0x74
+#define VK_F7 0x76
+#define VK_F1 0x70
+
+MenuAccelerators ACCELERATORS
+{
+ "O",CM_FILE_OPEN,CONTROL,VIRTKEY
+ "T",CM_FILE_TRUNC,CONTROL,VIRTKEY
+ "E",CM_FILE_EXTRACT,ALT,VIRTKEY
+ "W",CM_FILE_SWIFT,CONTROL,VIRTKEY
+ "D",CM_FILE_DECODE,CONTROL,VIRTKEY
+ "S",CM_FILE_SAVE,CONTROL,VIRTKEY
+ "F",CM_FILE_VISUAL,CONTROL,VIRTKEY
+ "E",CM_FILE_ENCODE,CONTROL,VIRTKEY
+ "I",CM_IDKFA,ALT,VIRTKEY
+ "L",SET_LOGGING,CONTROL,VIRTKEY
+ "R",CM_CHANGE_RECALCULATE,CONTROL,VIRTKEY
+ "A",CM_CHANGE_ANALIZE,ALT,VIRTKEY
+
+ VK_F1, CM_ABOUT, VIRTKEY
+ VK_F5, CM_FILE_OPEN, VIRTKEY,ALT
+ VK_F7, CM_FILE_FIND, VIRTKEY
+ VK_F7, CM_FIND_NEXT, VIRTKEY,SHIFT
+ VK_F7, CM_FILE_SED_DIA, VIRTKEY,CONTROL
+ VK_F7, CM_FILE_REPLACE, VIRTKEY,ALT
+}
+
+
+FINDDLG DIALOGEX 60, 100, 164, 65  
+CAPTION "Find & Replace text"
+FONT 7, "Arial", 0, 0, 0x0
+{
+    EDITTEXT        ID_FIND_TEXT     ,24,8,118,12
+    EDITTEXT        ID_REPL_TEXT     ,24,20,118,12
+    PUSHBUTTON      "&Find",   ID_FIND ,42,36,44,14
+    PUSHBUTTON      "&Replace", ID_REPL ,88,36,44,14
+    CTEXT           "продолжение поиска   Shift-F7",3111,1,54,161,9 ,  0x00001000L
+}
+
+
+SEDDLG DIALOGEX 2,-15,360,12
+FONT 7, "Arial", 0, 0, 0x0
+{
+    EDITTEXT        ID_FIND_TEXT     ,4,1,306,10
+    PUSHBUTTON      " GO!", ID_REPL ,324,1,42,10
+}
+
+XPATHDLG DIALOGEX 2,-15,360,12
+FONT 7, "Arial", 0, 0, 0x0
+{
+    EDITTEXT        ID_XPATH_TEXT     ,4,1,306,10
+    PUSHBUTTON      " GO!", ID_XPATH_GO ,324,1,42,10
+}
+
+STRINGTABLE DISCARDABLE 
+{
+    IDS_PROG_DESCR   "UR:read and write UFEBS files" 
+    IDS_ABOUT_TEXT   "Программа открывает для просмотра и редактирования файл\n
+ документов УФЕБС\n
+ - Умеет менять идентификаторы документов и\n
+   переделывать файл на другую дату\n
+ - Встроен XPATH анализ\n
+ - Умеет анализировать по маскам счетов
+ наличие документов  на КЗ УПД\n
+ - Умеет дробить PacketEPD на отдельные документы ED101
+   и затем собирать новый пакет, включая в него только нужные\n
+Ключи:
+\t-$\tизменять сумму
+\t-l\tвключить логирование
+\t-E\tизменять номера EDNo 
+\t-e\tне изменять номера EDNo  
+\t-B\tсжмать пробелы 
+\t-b\tне сжмать пробелы 
+\t-A\tизменять номера AccDocNo  
+\t-a\tне изменять номера AccDocNo
+\t-R\tпересчитать суммы 
+\t-r\tне пересчитать суммы  
+\t-f\tсокращенное меню
+\t-F\tполное меню
+\t-5\tдвойная распаковка для ED501
+\t-5-\tнет двойной распаковки для ED501
+\t-0\t
+
+\n\t\t(c)VVIvanenkov.SBT@sberbank.ru"
+}
+
+STRINGTABLE DISCARDABLE 
+{
+	CM_FILE_OPEN	"Загрузить УФЕБС файл"           
+	CM_FILE_VISUAL	"Распаковать и просмотреть документы УФЕБС"  
+	CM_FILE_SAVE	"Сохранить в файл"
+	CM_FILE_FIND	"Поиск и замена текста"
+	CM_FILE_PRETTY	"Отформатировать XML"
+	CM_CHANGE_DATEF "Установить новую дату,запаковать,сохранить"
+	CM_CUT_ED101	"Разбить пакет на отдельные ED101 и пересобрать по правилам"
+	CM_CHANGE_ANALIZE  "Анализ пакета на количество документов УПД"
+	CM_FILE_ENCODE	"Закодировать в B64" 
+	CM_FILE_DECODE	"Декодировать из B64" 
+	CM_SETTINGS	"Настройка обработки"
+}
+
+SETT_DLG_UI DIALOGEX 60, 100, 164, 135  
+CAPTION "Настройка обработки"
+FONT 7, "Arial", 0, 0, 0x0
+{
+    AUTOCHECKBOX     "Заменить EDNo"    , ID_SETT_DLG_EDNO,24,6,118,12
+    AUTOCHECKBOX     "Заменить AccDocNo", ID_SETT_DLG_ACCDOCNO,24,15,118,12
+    AUTOCHECKBOX     "Заменить суммы"   , ID_SETT_DLG_SUM , 24,24,118,12
+    AUTOCHECKBOX     "Включить логирование",  ID_SETT_DLG_LOG,24,33,118,12
+    AUTOCHECKBOX     "Сжать пробелы",     ID_SETT_DLG_COMPRESS_SPACE,24,42,118,12
+    AUTOCHECKBOX     "Предформат XML",    ID_SETT_DLG_FORMAT_XML,24,51,118,12
+
+    PUSHBUTTON      "Сохранить",   ID_FIND ,42,106,44,14
+    PUSHBUTTON      "Отмена"   , ID_REPL ,88,106,44,14
+    CTEXT           " настройка параметров обработки документов ",3111,1,124,162,10 ,  0x00001000L
+}
+
+
+IDB_TOOLBITMAP BITMAP "bmp\\icons50x48_16.bmp"
+
+#include "buildtime.rc"
+#include "datdlg.rc"
+//#include "xmldlg.rc"
